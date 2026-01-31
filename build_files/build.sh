@@ -24,22 +24,22 @@ dnf5 -y copr enable wezfurlong/wezterm-nightly
 dnf5 install -y @c-development @development-tools
 
 # Terminal & shell
-dnf5 install -y tmux vim zsh fd-find zoxide wezterm
+dnf5 install -y tmux vim zsh fd-find zoxide wezterm --skip-unavailable
 
 # Editor
 dnf5 install -y code
 
 # Version control & dev essentials
-dnf5 install -y git git-lfs gh lazygit
+dnf5 install -y git git-lfs gh --skip-unavailable
 
 # Languages & runtimes (what you can't get via distrobox/toolbox)
-dnf5 install -y golang rust cargo nodejs npm python3-pip java-17-openjdk-devel java-21-openjdk-devel
+dnf5 install -y golang rust cargo nodejs npm python3-pip java-17-openjdk-devel java-21-openjdk-devel --skip-unavailable
 
 # Containers & virtualization
-dnf5 install -y distrobox podman-compose
+dnf5 install -y distrobox podman-compose --skip-unavailable
 
 # Utilities
-dnf5 install -y htop btop ripgrep jq yq fzf bat eza
+dnf5 install -y htop btop ripgrep jq yq fzf bat eza --skip-unavailable
 
 # Disable COPRs
 dnf5 -y copr disable wezfurlong/wezterm-nightly
