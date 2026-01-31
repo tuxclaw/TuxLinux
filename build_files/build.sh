@@ -33,7 +33,7 @@ dnf5 install -y code
 dnf5 install -y git git-lfs gh lazygit
 
 # Languages & runtimes (what you can't get via distrobox/toolbox)
-dnf5 install -y golang rust cargo nodejs npm python3-pip
+dnf5 install -y golang rust cargo nodejs npm python3-pip java-17-openjdk-devel java-21-openjdk-devel
 
 # Containers & virtualization
 dnf5 install -y distrobox podman-compose
