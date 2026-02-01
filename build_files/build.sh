@@ -44,5 +44,8 @@ dnf5 install -y htop btop ripgrep jq yq fzf bat eza --skip-unavailable
 # Disable COPRs
 dnf5 -y copr disable wezfurlong/wezterm-nightly
 
+# Install Starship prompt
+curl -fsSL https://starship.rs/install.sh | sh -s -- -y
+
 ### Enable services
 systemctl enable podman.socket
