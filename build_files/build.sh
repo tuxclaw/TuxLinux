@@ -41,6 +41,9 @@ dnf5 install -y distrobox podman-compose --skip-unavailable
 # Utilities
 dnf5 install -y htop btop ripgrep jq yq fzf bat eza curl tar gzip unzip --skip-unavailable
 
+# Tauri build dependencies
+dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
+
 # Disable COPRs
 dnf5 -y copr disable wezfurlong/wezterm-nightly
 
