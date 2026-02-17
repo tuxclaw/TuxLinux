@@ -52,8 +52,13 @@ dnf5 install -y distrobox podman-compose --skip-unavailable
 # Utilities
 dnf5 install -y htop btop ripgrep jq yq fzf bat eza curl tar gzip unzip --skip-unavailable
 
-# CLI tools (benchmarking, git UI, code stats, git diffs)
-dnf5 install -y lazygit git-delta hyperfine yt-dlp --skip-unavailable
+# Lazygit (needs COPR)
+dnf5 -y copr enable atim/lazygit
+dnf5 install -y lazygit --skip-unavailable
+dnf5 -y copr disable atim/lazygit
+
+# CLI tools (benchmarking, code stats, git diffs)
+dnf5 install -y git-delta hyperfine yt-dlp --skip-unavailable
 
 # Theming
 dnf5 install -y kvantum --skip-unavailable
@@ -62,6 +67,7 @@ dnf5 install -y kvantum --skip-unavailable
 dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
 
 # Networking tools
+mkdir -p /usr/local/bin
 dnf5 install -y cloudflared --skip-unavailable
 
 # Disable COPRs & cleanup repos
