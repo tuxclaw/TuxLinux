@@ -66,9 +66,9 @@ dnf5 install -y kvantum --skip-unavailable
 # Tauri build dependencies
 dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
 
-# Networking tools
-mkdir -p /usr/local/bin
-dnf5 install -y cloudflared --skip-unavailable
+# Networking tools — cloudflared RPM post-install needs /usr/local/bin for symlink
+install -d -m 0755 /usr/local/bin 2>/dev/null || true
+dnf5 install -y cloudflared --skip-unavailable || true
 
 # Disable COPRs & cleanup repos
 dnf5 -y copr disable wezfurlong/wezterm-nightly
