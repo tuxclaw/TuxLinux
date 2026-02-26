@@ -63,8 +63,8 @@ dnf5 -y copr disable atim/lazygit
 # CLI tools (benchmarking, code stats, git diffs)
 dnf5 install -y git-delta hyperfine yt-dlp --skip-unavailable
 
-# Theming
-dnf5 install -y kvantum --skip-unavailable
+# Theming & GNOME tools
+dnf5 install -y sassc glib2-devel optipng dialog --skip-unavailable
 
 # Tauri build dependencies
 dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
