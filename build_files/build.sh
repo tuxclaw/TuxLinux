@@ -18,6 +18,17 @@ rpm --import https://packages.microsoft.com/keys/microsoft.asc
 # WezTerm COPR
 dnf5 -y copr enable wezfurlong/wezterm-nightly
 
+# Cloudflare tunnel client
+rpm --import https://pkg.cloudflare.com/cloudflare-ascii-pubkey.gpg
+cat > /etc/yum.repos.d/cloudflared.repo << 'EOF'
+[cloudflared]
+name=Cloudflare Tunnel Client
+baseurl=https://pkg.cloudflare.com/cloudflared/rpm
+enabled=1
+gpgcheck=1
+gpgkey=https://pkg.cloudflare.com/cloudflare-ascii-pubkey.gpg
+EOF
+
 ### Install packages
 
 # Development groups
@@ -44,8 +55,27 @@ dnf5 install -y distrobox podman-compose --skip-unavailable
 # Utilities
 dnf5 install -y htop btop ripgrep jq yq fzf bat eza curl tar gzip unzip --skip-unavailable
 
-# Disable COPRs
+# Lazygit (needs COPR)
+dnf5 -y copr enable atim/lazygit
+dnf5 install -y lazygit --skip-unavailable
+dnf5 -y copr disable atim/lazygit
+
+# CLI tools (benchmarking, code stats, git diffs)
+dnf5 install -y git-delta hyperfine yt-dlp --skip-unavailable
+
+# Theming
+dnf5 install -y kvantum --skip-unavailable
+
+# Tauri build dependencies
+dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
+
+# Networking tools — cloudflared RPM post-install needs /usr/local/bin for symlink
+install -d -m 0755 /usr/local/bin 2>/dev/null || true
+dnf5 install -y cloudflared --skip-unavailable || true
+
+# Disable COPRs & cleanup repos
 dnf5 -y copr disable wezfurlong/wezterm-nightly
+rm -f /etc/yum.repos.d/cloudflared.repo
 
 # Install Starship prompt
 curl -fsSL https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
