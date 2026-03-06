@@ -46,9 +46,6 @@ dnf5 install -y git git-lfs gh --skip-unavailable
 # Languages & runtimes (what you can't get via distrobox/toolbox)
 dnf5 install -y golang rust cargo nodejs npm python3-pip java-17-openjdk-devel java-21-openjdk-devel --skip-unavailable
 
-# Tauri build dependencies
-dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
-
 # Containers & virtualization
 dnf5 install -y distrobox podman-compose --skip-unavailable
 
@@ -63,8 +60,14 @@ dnf5 -y copr disable atim/lazygit
 # CLI tools (benchmarking, code stats, git diffs)
 dnf5 install -y git-delta hyperfine yt-dlp --skip-unavailable
 
-# Theming
-dnf5 install -y kvantum --skip-unavailable
+# GNOME theming & extensions
+dnf5 install -y gnome-tweaks gnome-extensions-app --skip-unavailable
+
+# GNOME theme build tools
+dnf5 install -y sassc glib2-devel optipng dialog --skip-unavailable
+
+# GTK theming libraries
+dnf5 install -y gtk-murrine-engine gtk2-engines --skip-unavailable
 
 # Tauri build dependencies
 dnf5 install -y webkit2gtk4.1-devel openssl-devel gtk3-devel libappindicator-gtk3-devel librsvg2-devel pango-devel --skip-unavailable
